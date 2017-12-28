@@ -3,4 +3,4 @@ This program is created for data cleaning in banknotes serial number recognition
 
 [Example of RMB serial number]
 
-![RMB05](https://github.com/yaojincao/Data-cleaning-for-SN-recognition/blob/master/2P06n0000001N-2019948721F2_TJ08372095.bmp)
+![RMB05](https://github.com/yaojincao/Data-cleaning-for-SN-recognition/blob/master/2P06n0000008N0013F3_CG44090425.bmp)
