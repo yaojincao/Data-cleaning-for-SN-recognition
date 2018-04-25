@@ -3,8 +3,8 @@
 
 #include "DataStru.h"
 
-//extern char RResult[20];//识别结果
-extern int NumSim[ModNum];//相似度，过度变量
+//extern char RResult[20];//璇嗗埆缁撴灉
+extern int NumSim[ModNum];//鐩镐技搴︼紝杩囧害鍙橀噺
 extern int iNew;
 int jNew;
 
@@ -19,7 +19,7 @@ float simDoubleC1, simDoubleC2, simDoubleC3,simDoubleN1, simDoubleN2, simDoubleN
 
 void AlpEvo4ForSingle()
 {
-	//20120221用于23两位补判------
+	//20120221鐢ㄤ簬23涓や綅琛ュ垽------
 
 		if(
 			(RResult[1]>=10&&RResult[2]<10&&RResult[3]<10)
@@ -124,6 +124,102 @@ void AlpEvo4ForSingle()
 	
 	
 	
+}
+void AlpEvo4ForDouble()
+{
+	//20120221脫脙脫脷23脕陆脦禄虏鹿脜脨------
+
+		if(
+			(RResult[1]>=10&&RResult[2]<10&&RResult[3]<10)
+			||
+			(RResult[1]<10&&RResult[2]>=10&&RResult[3]<10)
+			||
+			(RResult[1]<10&&RResult[2]<10&&RResult[3]>=10)			
+			
+			) {}		
+		else
+		{
+			//find max C1;
+			maxC1=10;
+			simDoubleC1=simDouble234[0][10];
+			for(jNew=10;jNew<35;jNew++)
+			{
+				if(simDouble234[0][jNew+1]>simDoubleC1) 
+				{
+					simDoubleC1=simDouble234[0][jNew+1]; maxC1=jNew+1;
+				}
+			}			
+			//find max C2;
+			maxC2=10;
+			simDoubleC2=simDouble234[1][10];
+			for(jNew=10;jNew<35;jNew++)
+			{
+				if(simDouble234[1][jNew+1]>simDoubleC2) 
+				{
+					simDoubleC2=simDouble234[1][jNew+1]; maxC2=jNew+1;
+				}
+			}
+			//find max C3;
+			maxC3=10;
+			simDoubleC3=simDouble234[2][10];
+			for(jNew=10;jNew<35;jNew++)
+			{
+				if(simDouble234[2][jNew+1]>simDoubleC3) 
+				{
+					simDoubleC3=simDouble234[2][jNew+1]; maxC3=jNew+1;
+				}
+			}
+			//find max N1;
+			maxN1=0;
+			simDoubleN1=simDouble234[0][0];
+			for(jNew=0;jNew<9;jNew++)
+			{
+				if(simDouble234[0][jNew+1]>simDoubleN1) 
+				{
+					simDoubleN1=simDouble234[0][jNew+1]; maxN1=jNew+1;
+				}
+			}			
+			//	find max N2;
+			maxN2=0;
+			simDoubleN2=simDouble234[1][0];
+			for(jNew=0;jNew<9;jNew++)
+			{
+				if(simDouble234[1][jNew+1]>simDoubleN2) 
+				{
+					simDoubleN2=simDouble234[1][jNew+1]; maxN2=jNew+1;
+				}
+			}
+			//	find max N3;
+			maxN3=0;
+			simDoubleN3=simDouble234[2][0];
+			for(jNew=0;jNew<9;jNew++)
+			{
+				if(simDouble234[2][jNew+1]>simDoubleN3) 
+				{
+					simDoubleN3=simDouble234[2][jNew+1]; maxN3=jNew+1;
+				}
+			}
+			//			get  N1+C2;get  C1+N2;
+			simDoubleC1N2N3=simDoubleC1+simDoubleN2+simDoubleN3;
+			simDoubleN1C2N3=simDoubleN1+simDoubleC2+simDoubleN3;
+			simDoubleN1N2C3=simDoubleN1+simDoubleN2+simDoubleC3;
+			//			compare C1+N2 and N1+C2;make a decision (C1+N2 prior);
+			if ( simDoubleN1N2C3>simDoubleN1C2N3 && simDoubleN1N2C3>simDoubleC1N2N3 )
+			{
+				RResult[1]=maxN1;RResult[2]=maxN2;RResult[3]=maxC3;
+			}
+			else 
+			{
+				if(simDoubleN1C2N3>simDoubleC1N2N3 && simDoubleN1C2N3>simDoubleN1N2C3)
+				{
+					RResult[1]=maxN1;RResult[2]=maxC2;RResult[3]=maxN3;
+				}
+				else
+				{
+					RResult[1]=maxC1;RResult[2]=maxN2;RResult[3]=maxN3;
+				}
+			}			
+		}	
 }
 
 
