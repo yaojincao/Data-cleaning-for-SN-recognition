@@ -221,5 +221,24 @@ void AlpEvo4ForDouble()
 			}			
 		}	
 }
+int SizeDetectionFor234(int RealEndF[],int RealStartF[])
+{
+	int s1,s2,s3;
+	int out=1;
+	
+		s1=RealEndF[1]-RealStartF[1];  s2=RealEndF[2]-RealStartF[2];  s3=RealEndF[3]-RealStartF[3];
+	//s1=RealEnd[1]-RealStart[1];  s2=RealEnd[2]-RealStart[2];  s3=RealEnd[3]-RealStart[3];
+	//	printf("s1=%d,s2=%d,s3=%d\n",s1,s2,s3);
 
+		if (s1>s2&&s1>s3)
+			out=1;
+
+		if (s2>s1&&s2>s3)
+			out=2;
+
+		if (s3>s1&&s3>s2)
+			out=3;
+
+		return out;
+}
 
